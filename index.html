@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💌</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffd6e0, #fff1f5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 25px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.envelope {
+  font-size: 80px;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+.bear {
+  font-size: 70px;
+  display: none;
+  animation: bounce 2s infinite;
+}
+
+p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.buttons {
+  margin-top: 15px;
+  position: relative;
+  height: 60px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff5c8a;
+  color: white;
+}
+
+#no {
+  background: #ccc;
+  position: absolute;
+  right: 0;
+}
+
+#content,
+#confession {
+  display: none;
+}
+
+.name {
+  font-weight: bold;
+  color: #ff5c8a;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+  <source src="season.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+  <!-- Envelope -->
+  <div id="envelope" class="envelope" onclick="openLetter()">💌</div>
+
+  <!-- Bear -->
+  <div id="bear" class="bear">🐻</div>
+
+  <!-- Question -->
+  <div id="content">
+    <p>
+      helloo, I know you don’t know me, but are you willing to read my confession?
+    </p>
+
+    <div class="buttons">
+      <button id="yes" onclick="showConfession()">Yes 💗</button>
+      <button id="no">No 🙃</button>
+    </div>
+  </div>
+
+  <!-- Confession -->
+  <div id="confession">
+    <p>I’ve been admiring you for about three years na ata</p>
+
+    <p>
+      I just want to be straightforward. please learn how to lean on someone’s
+      shoulder when you’re struggling huhu. I’ve always noticed your reposts,
+      and I know I shouldn’t have stalked you. pero, I didn’t do that for my own
+      pleasure, but to reassure myself na you’re okay.
+    </p>
+
+    <p>
+      This might sound weird to you, but I’ve always included you in my prayers.
+    </p>
+
+    <p>
+      That’s all I wanted to say. stay positive,
+      <span class="name">lex</span>.
+      I hope you can find someone who can meet all your needs
+    </p>
+  </div>
+
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+
+function openLetter() {
+  document.getElementById("envelope").style.display = "none";
+  document.getElementById("bear").style.display = "block";
+  document.getElementById("content").style.display = "block";
+}
+
+function showConfession() {
+  document.getElementById("confession").style.display = "block";
+  document.getElementById("bgm").play();
+}
+
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", moveNo);
+</script>
+
+</body>
+</html>
